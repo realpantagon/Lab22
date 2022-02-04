@@ -62,12 +62,6 @@ void Unit::showStatus(){
 void Unit::newTurn(){
 	guard_on = false;
 }
-
-
-
-/////////////////////////////////////////////////////////////////////////////////////
-//Write function members isDead(), guard(), heal(), beAttacked(), and attack() here//
-/////////////////////////////////////////////////////////////////////////////////////
 bool Unit::isDead(){
 	if(hp<=0){
 		return true;
@@ -97,12 +91,19 @@ int Unit::attack(Unit &mons){
 }
 
 int Unit::heal(){
+	int healed =(rand()%21)+10;
 	if(hp>=hpmax){
-		hp=hpmax;
-	}else if(hp<=hpmax){
-		
+		return 0;
+	}else if(hp<hpmax){
+		if(hp+healed>hpmax){
+			healed=hpmax-hp;
+			hp+=healed;
+		}else{
+			healed=healed;
+			hp+=healed;
+		}
 	}
-		return hp;
+		return healed;
 }
 
 
